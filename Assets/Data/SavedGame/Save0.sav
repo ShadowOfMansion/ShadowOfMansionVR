@@ -1,0 +1,71 @@
+{
+  "scene": "Demo_Final_1",
+  "levelName": "Demo_Final_1",
+  "levelNameKey": null,
+  "dateTime": "2023-11-30 17:16:18",
+  "playerData": {
+    "playerPosition": {
+      "x": 268.6906,
+      "y": 2.91500115,
+      "z": 253.083038,
+      "normalized": {
+        "x": 0.727909863,
+        "y": 0.007897031,
+        "z": 0.685627341,
+        "magnitude": 1.0,
+        "sqrMagnitude": 1.0
+      },
+      "magnitude": 369.126221,
+      "sqrMagnitude": 136254.172
+    },
+    "cameraRotation": {
+      "x": -63.9499969,
+      "y": -25.9,
+      "normalized": {
+        "x": -0.926868737,
+        "y": -0.375385463,
+        "normalized": {
+          "x": -0.9268688,
+          "y": -0.3753855,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 0.99999994,
+        "sqrMagnitude": 0.9999999
+      },
+      "magnitude": 68.99574,
+      "sqrMagnitude": 4760.412
+    },
+    "characterState": 0,
+    "playerHealth": 100.0
+  },
+  "itemSwitcherData": {
+    "switcherActiveItem": -1,
+    "switcherWeaponItem": -1,
+    "switcher_item_flashlight": {
+      "FlashlightItem": {
+        "batteryPercentage": 100.0
+      }
+    }
+  },
+  "inventoryData": {
+    "inv_slots_count": 10,
+    "slotsData": {
+      "inv_slot_0": "null",
+      "inv_slot_1": "null",
+      "inv_slot_2": "null",
+      "inv_slot_3": "null",
+      "inv_slot_4": "null",
+      "inv_slot_5": "null",
+      "inv_slot_6": "null",
+      "inv_slot_7": "null",
+      "inv_slot_8": "null",
+      "inv_slot_9": "null"
+    }
+  },
+  "objectivesData": {
+    "activeObjectives": {},
+    "touchedObjectives": {}
+  },
+  "saveablesData": {}
+}
