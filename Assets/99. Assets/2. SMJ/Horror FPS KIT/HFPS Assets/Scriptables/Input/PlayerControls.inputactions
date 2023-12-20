@@ -212,6 +212,17 @@
                 },
                 {
                     "name": "",
+                    "id": "f1f815c1-8439-4c34-b1b2-33a48313a676",
+                    "path": "<XRController>{LeftHand}/joystick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XRController",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b5b0935f-43ae-4567-afff-4f61c878566f",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -239,6 +250,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cdc0da49-262f-4103-9d78-d9ca0cc3e252",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XRController",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -278,6 +300,17 @@
                 },
                 {
                     "name": "",
+                    "id": "363bf615-2397-433b-9538-a40bc3d50928",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XRController",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c111596d-81a0-42f9-a847-5fe6563c6111",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
@@ -305,6 +338,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a264942-5fe6-431d-a944-98b89da2c0d9",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XRController",
                     "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -470,6 +514,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2ceb05a9-911c-4eae-9b10-50dc76acde43",
+                    "path": "<XRController>{LeftHand}/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XRController",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1114,6 +1169,11 @@
         {
             "name": "Xbox",
             "bindingGroup": "Xbox",
+            "devices": []
+        },
+        {
+            "name": "XRController",
+            "bindingGroup": "XRController",
             "devices": []
         }
     ]
