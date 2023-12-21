@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.014970011, g: 0.044860937, b: 0.034700733, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -930,7 +930,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2330276053545322842, guid: 56bc81b98ffacf949a5107d5e39580db, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1009,8 +1010,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -7.89
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 8928086499169486943, guid: 21b7df29eb049034fa0fbf9986fc2876, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 7397229863606190473, guid: 21b7df29eb049034fa0fbf9986fc2876, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21b7df29eb049034fa0fbf9986fc2876, type: 3}
@@ -1636,7 +1639,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1911277647146441423, guid: c4d166d327584ef49bc48b0c85ff4eff, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1865,8 +1869,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 3316359522179555584, guid: 3551b6ee1bf445f46bf1a65123a20613, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 3848599491121274754, guid: 3551b6ee1bf445f46bf1a65123a20613, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3551b6ee1bf445f46bf1a65123a20613, type: 3}
@@ -2049,7 +2055,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2330276053545322842, guid: 56bc81b98ffacf949a5107d5e39580db, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2672,7 +2679,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2330276053545322842, guid: 56bc81b98ffacf949a5107d5e39580db, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3214,8 +3222,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tombstone_04 (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 7121958271091664553, guid: 67c97a5ac2632f7478b564596e2b0551, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 7746820857236141430, guid: 67c97a5ac2632f7478b564596e2b0551, type: 3}
+    - {fileID: 1079015412400828619, guid: 67c97a5ac2632f7478b564596e2b0551, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67c97a5ac2632f7478b564596e2b0551, type: 3}
@@ -4315,8 +4326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass_02 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 1431679571296417353, guid: f88a4267a6ecf5c499523082fb922d1b, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 2109469413872565546, guid: f88a4267a6ecf5c499523082fb922d1b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f88a4267a6ecf5c499523082fb922d1b, type: 3}
@@ -5038,8 +5051,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 3316359522179555584, guid: 3551b6ee1bf445f46bf1a65123a20613, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 3848599491121274754, guid: 3551b6ee1bf445f46bf1a65123a20613, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3551b6ee1bf445f46bf1a65123a20613, type: 3}
@@ -5117,8 +5132,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 6581526363640992910, guid: fdab057734110594f85f8625927914e5, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8404463459767889987, guid: fdab057734110594f85f8625927914e5, type: 3}
+    - {fileID: 6254593501751779146, guid: fdab057734110594f85f8625927914e5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdab057734110594f85f8625927914e5, type: 3}
@@ -5771,7 +5789,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2330276053545322842, guid: 56bc81b98ffacf949a5107d5e39580db, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6602,8 +6621,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tombstone_04 (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 7121958271091664553, guid: 67c97a5ac2632f7478b564596e2b0551, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 7746820857236141430, guid: 67c97a5ac2632f7478b564596e2b0551, type: 3}
+    - {fileID: 1079015412400828619, guid: 67c97a5ac2632f7478b564596e2b0551, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67c97a5ac2632f7478b564596e2b0551, type: 3}
@@ -6881,7 +6903,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tombstone_03
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3334789081734972889, guid: d55e216990c3c5b44883b45a1a617eea, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7090,8 +7113,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.687
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 4229291578983268195, guid: 810f36cba4dd2664585c077599a17881, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 2322929332907540864, guid: 810f36cba4dd2664585c077599a17881, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 810f36cba4dd2664585c077599a17881, type: 3}
@@ -7179,8 +7204,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 9205681527064258468, guid: 7609da5e112c40943acfcf0abb662ff4, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8682199604845026565, guid: 7609da5e112c40943acfcf0abb662ff4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7609da5e112c40943acfcf0abb662ff4, type: 3}
@@ -8457,8 +8484,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -18.613
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 8928086499169486943, guid: 21b7df29eb049034fa0fbf9986fc2876, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 7397229863606190473, guid: 21b7df29eb049034fa0fbf9986fc2876, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21b7df29eb049034fa0fbf9986fc2876, type: 3}
@@ -8651,8 +8680,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 9205681527064258468, guid: 7609da5e112c40943acfcf0abb662ff4, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8682199604845026565, guid: 7609da5e112c40943acfcf0abb662ff4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7609da5e112c40943acfcf0abb662ff4, type: 3}
@@ -8730,8 +8761,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_4m_01 (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 334611943219616197, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8791776367152987060, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
@@ -10628,8 +10661,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 4.904
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 4161355808661480705, guid: f4da9fc62078a3e4ebc62882f55b927f, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 272027212602816489, guid: f4da9fc62078a3e4ebc62882f55b927f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4da9fc62078a3e4ebc62882f55b927f, type: 3}
@@ -11157,8 +11192,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_4m_01 (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 334611943219616197, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8791776367152987060, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
@@ -11544,8 +11581,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_4m_01 (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 334611943219616197, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8791776367152987060, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
@@ -11623,8 +11662,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 3316359522179555584, guid: 3551b6ee1bf445f46bf1a65123a20613, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 3848599491121274754, guid: 3551b6ee1bf445f46bf1a65123a20613, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3551b6ee1bf445f46bf1a65123a20613, type: 3}
@@ -12969,7 +13010,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass_01
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1532654877184864502, guid: 9604c403daf62d84797826f0f13edabf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13520,7 +13562,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2330276053545322842, guid: 56bc81b98ffacf949a5107d5e39580db, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -14202,8 +14245,15 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 5733811460191062635, guid: 38c94c4a29bb5034ab5768b01ab6cf48, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 593043263407295427, guid: 38c94c4a29bb5034ab5768b01ab6cf48, type: 3}
+    - {fileID: 2341106980489949763, guid: 38c94c4a29bb5034ab5768b01ab6cf48, type: 3}
+    - {fileID: 7269285330871370662, guid: 38c94c4a29bb5034ab5768b01ab6cf48, type: 3}
+    - {fileID: 842800258890139745, guid: 38c94c4a29bb5034ab5768b01ab6cf48, type: 3}
+    - {fileID: 5315502840800193818, guid: 38c94c4a29bb5034ab5768b01ab6cf48, type: 3}
+    - {fileID: 7076011992109829482, guid: 38c94c4a29bb5034ab5768b01ab6cf48, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5400002179380200873, guid: 38c94c4a29bb5034ab5768b01ab6cf48,
@@ -14423,7 +14473,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3442583580713159057, guid: 1f597776336ca8c44ac58c5552d6a52f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -14502,7 +14553,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2330276053545322842, guid: 56bc81b98ffacf949a5107d5e39580db, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -15531,8 +15583,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.56
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 8928086499169486943, guid: 21b7df29eb049034fa0fbf9986fc2876, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 7397229863606190473, guid: 21b7df29eb049034fa0fbf9986fc2876, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21b7df29eb049034fa0fbf9986fc2876, type: 3}
@@ -15610,7 +15664,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1911277647146441423, guid: c4d166d327584ef49bc48b0c85ff4eff, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -15689,7 +15744,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3442583580713159057, guid: 1f597776336ca8c44ac58c5552d6a52f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16014,7 +16070,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2330276053545322842, guid: 56bc81b98ffacf949a5107d5e39580db, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16296,8 +16353,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Birch_01
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 174127521260716714, guid: 7c10f9881bfc5ab43a0e8f7cc7e81825, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 7136069400589837093, guid: 7c10f9881bfc5ab43a0e8f7cc7e81825, type: 3}
+    - {fileID: 1543205621521085660, guid: 7c10f9881bfc5ab43a0e8f7cc7e81825, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c10f9881bfc5ab43a0e8f7cc7e81825, type: 3}
@@ -16637,8 +16697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_4m_01 (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 334611943219616197, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8791776367152987060, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
@@ -17347,8 +17409,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 3316359522179555584, guid: 3551b6ee1bf445f46bf1a65123a20613, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 3848599491121274754, guid: 3551b6ee1bf445f46bf1a65123a20613, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3551b6ee1bf445f46bf1a65123a20613, type: 3}
@@ -17557,7 +17621,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass_01
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1532654877184864502, guid: 9604c403daf62d84797826f0f13edabf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17705,8 +17770,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fern_01
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 3464899694444720661, guid: fd94b27c38ac6f14cb0e280639633d5f, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 1190028215550059043, guid: fd94b27c38ac6f14cb0e280639633d5f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd94b27c38ac6f14cb0e280639633d5f, type: 3}
@@ -18250,7 +18317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!218 &1866552871
 Terrain:
   m_ObjectHideFlags: 0
@@ -18755,8 +18822,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Maple_01
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 6966733654031421669, guid: 499630329646b044b91cefa69d79d78c, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 3361849607462300497, guid: 499630329646b044b91cefa69d79d78c, type: 3}
+    - {fileID: 4227644908568031055, guid: 499630329646b044b91cefa69d79d78c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 499630329646b044b91cefa69d79d78c, type: 3}
@@ -18872,6 +18942,98 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910622097}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1913643763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1913643766}
+  - component: {fileID: 1913643765}
+  - component: {fileID: 1913643764}
+  m_Layer: 0
+  m_Name: Terrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!154 &1913643764
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913643763}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_TerrainData: {fileID: 15600000, guid: 281fd3b0ac5c0f6438f1f556227f211e, type: 2}
+  m_EnableTreeColliders: 1
+--- !u!218 &1913643765
+Terrain:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913643763}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_TerrainData: {fileID: 15600000, guid: 281fd3b0ac5c0f6438f1f556227f211e, type: 2}
+  m_TreeDistance: 5000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 80
+  m_DetailObjectDensity: 1
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMaximumLOD: 0
+  m_ShadowCastingMode: 2
+  m_DrawHeightmap: 1
+  m_DrawInstanced: 0
+  m_DrawTreesAndFoliage: 1
+  m_StaticShadowCaster: 0
+  m_IgnoreQualitySettings: 0
+  m_ReflectionProbeUsage: 1
+  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_BakeLightProbesForTrees: 1
+  m_PreserveTreePrototypeLayers: 0
+  m_DeringLightProbesForTrees: 1
+  m_ReceiveGI: 1
+  m_ScaleInLightmap: 0.0256
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+  m_GroupingID: 0
+  m_RenderingLayerMask: 1
+  m_AllowAutoConnect: 1
+  m_EnableHeightmapRayTracing: 1
+  m_EnableTreesAndDetailsRayTracing: 0
+  m_TreeMotionVectorModeOverride: 3
+--- !u!4 &1913643766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913643763}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5, y: 0, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1922533690
 GameObject:
   m_ObjectHideFlags: 0
@@ -19057,8 +19219,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_4m_01 (9)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 334611943219616197, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8791776367152987060, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
@@ -19136,7 +19300,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 812916673929059487, guid: 85eb4ed7d3887e4429e51d2306fe766b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -19953,8 +20118,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fern_01 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 3464899694444720661, guid: fd94b27c38ac6f14cb0e280639633d5f, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 1190028215550059043, guid: fd94b27c38ac6f14cb0e280639633d5f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd94b27c38ac6f14cb0e280639633d5f, type: 3}
@@ -20204,8 +20371,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_4m_01 (8)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 334611943219616197, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8791776367152987060, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 499999751186cc847bed5fae5beea3d3, type: 3}
@@ -21093,7 +21262,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bushes_01 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4548600692415484154, guid: 98d5b7a2216fa25499348d1afe390778, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
