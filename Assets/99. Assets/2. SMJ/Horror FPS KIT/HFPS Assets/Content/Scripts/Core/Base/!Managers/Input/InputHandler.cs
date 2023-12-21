@@ -34,7 +34,8 @@ namespace ThunderWire.Input
             None,
             MouseKeyboard,
             DualshockGamepad,
-            XboxGamepad
+            XboxGamepad,
+            XR
         };
 
         public const string INPUT_FILENAME = "UserInputs.xml";
@@ -54,10 +55,12 @@ namespace ThunderWire.Input
         public const string MOUSE_BINDING = "<Mouse>";
         public const string DUALSHOCK_BINDING = "<DualShockGamepad>";
         public const string XINPUT_BINDING = "<XInputController>";
+        public const string XR_BINDING = "<XRController>";
 
         public const string DEFAULTGROUP_PC = "PC";
         public const string DEFAULTGROUP_PS4 = "PS4";
         public const string DEFAULTGROUP_XBOX = "Xbox";
+        public const string DEFAULTGROUP_XR = "XR";
 
         private const string PREFS_INPUT = "InputController";
 
@@ -425,7 +428,6 @@ namespace ThunderWire.Input
             {
                 connectedDevices.Remove(Device.XboxGamepad);
             }
-
             if (Keyboard.current != null && Mouse.current != null)
             {
                 if (!connectedDevices.Contains(Device.MouseKeyboard))
