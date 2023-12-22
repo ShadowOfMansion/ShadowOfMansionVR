@@ -12,7 +12,6 @@ using UnityEngine.Events;
 using ThunderWire.Utilities;
 using Newtonsoft.Json.Linq;
 using HFPS.Player;
-using Oculus.Interaction;
 
 namespace HFPS.Systems
 {

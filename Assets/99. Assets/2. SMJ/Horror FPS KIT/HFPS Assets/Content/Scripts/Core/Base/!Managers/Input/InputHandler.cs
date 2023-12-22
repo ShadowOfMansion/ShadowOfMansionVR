@@ -428,6 +428,10 @@ namespace ThunderWire.Input
             {
                 connectedDevices.Remove(Device.XboxGamepad);
             }
+            else if (connectedDevices.Contains(Device.XR))
+            {
+                connectedDevices.Remove(Device.XR);
+            }
             if (Keyboard.current != null && Mouse.current != null)
             {
                 if (!connectedDevices.Contains(Device.MouseKeyboard))
