@@ -5,13 +5,12 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace HFPS.Systems
 {
-    public class KeypadCalculator : MonoBehaviour, ISaveable
+    public class KeypadCalculator : MonoBehaviour
     {
         private MeshRenderer textRenderer;
         public MeshRenderer keypadRenderer;
@@ -215,29 +214,6 @@ namespace HFPS.Systems
         {
             yield return new WaitForSeconds(1);
             enableInsert = true;
-        }
-
-        public Dictionary<string, object> OnSave()
-        {
-            return new Dictionary<string, object>()
-            {
-                { "accessGranted", m_accessGranted }
-            };
-        }
-
-        public void OnLoad(JToken token)
-        {
-            m_accessGranted = (bool)token["accessGranted"];
-
-            if (m_accessGranted)
-            {
-                keypadRenderer.material = LedGreenOn;
-                enableInsert = false;
-                enableInsert = true;
-                numberInsert = "";
-                textRenderer.material.SetColor("_Color", Color.green);
-                AccessCodeText.text = "GRANTED";
-            }
         }
 
         void Calculator()

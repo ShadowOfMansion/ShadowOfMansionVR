@@ -629,17 +629,14 @@ namespace HFPS.Systems
             Collider[] collis = AutoOpenDoor();
             foreach (Collider collider in collis)
             {
-                if (collider.gameObject.GetComponent<DynamicObject>() != null)
+                if (collider.gameObject.layer == LayerMask.GetMask("Door"))
                 {
-                    if (collider.gameObject.GetComponent<DynamicObject>().dynamicType == Type_Dynamic.Door)
-                    {
                         Animation anim = collider.gameObject.GetComponent<Animation>();
                         foreach (AnimationState state in anim)
                         {
                             anim.Play(state.name);
                             StartCoroutine(delayAnimPlay());
                         }
-                    }
                 }
             }
         }

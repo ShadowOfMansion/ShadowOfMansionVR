@@ -265,14 +265,7 @@ namespace HFPS.Systems
 
             if (newObjectives != 0)
             {
-                if (newObjectives > 1)
-                {
-                    PushObjectiveText(multipleObjectivesText.GetStringWithInput('[', ']', '[', ']'), time, isUppercased);
-                }
-                else
-                {
                     PushObjectiveText(singleObjective, time, isUppercased);
-                }
 
                 if (sound) { PlaySound(newObjective); }
             }

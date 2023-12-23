@@ -11,7 +11,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.PostProcessing;
-using ThunderWire.Input;
 using ThunderWire.Helpers;
 using HFPS.Player;
 using HFPS.UI;
@@ -164,8 +163,6 @@ namespace HFPS.Systems
 #region Private Variables
         private PostProcessVolume postProcessing;
         private ColorGrading colorGrading;
-        private SaveGameHandler saveHandler;
-        private MenuController menuUI;
         private CutsceneManager cutscene;
         private ScriptManager scriptManager;
         private HealthManager healthManager;
@@ -198,12 +195,9 @@ namespace HFPS.Systems
 
         void Awake()
         {
-            InputHandler.OnInputsUpdated += OnInputsUpdated;
             TextsSource.Subscribe(OnInitTexts);
 
             scriptManager = ScriptManager.Instance;
-            menuUI = GetComponent<MenuController>();
-            saveHandler = GetComponent<SaveGameHandler>();
             cutscene = GetComponent<CutsceneManager>();
             healthManager = m_PlayerObj.GetComponent<HealthManager>();
 
@@ -229,48 +223,18 @@ namespace HFPS.Systems
             SetupUIControls();
         }
 
+        // 수정 필요
         void SetupUIControls()
         {
-            InputHandler.GetInputAction("Pause").performed += OnPause;
-            InputHandler.GetInputAction("Inventory").performed += OnInventory;
+            //InputHandler.GetInputAction("Pause").performed += OnPause;
         }
 
+        // 수정 필요
         void OnDestroy()
         {
-            InputHandler.GetInputAction("Pause").performed -= OnPause;
-            InputHandler.GetInputAction("Inventory").performed -= OnInventory;
-            InputHandler.OnInputsUpdated -= OnInputsUpdated;
+            //InputHandler.GetInputAction("Pause").performed -= OnPause;
+            //InputHandler.OnInputsUpdated -= OnInputsUpdated;
             colorGrading.saturation.Override(0);
-        }
-
-        private void OnInputsUpdated(InputHandler.Device device, ActionBinding[] bindings)
-        {
-            isGamepad = device != InputHandler.Device.MouseKeyboard;
-
-            if (isGamepad)
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            else
-            {
-                if (menuUI.optionsShown)
-                {
-                    Cursor.visible = true;
-                    Cursor.lockState = CursorLockMode.None;
-                }
-                else
-                {
-                    Cursor.visible = false;
-                    Cursor.lockState = CursorLockMode.Locked;
-                }
-            }
-
-            bindPath_Use = InputHandler.CompositeOf("Use").GetBindingPath();
-            bindPath_Grab = InputHandler.CompositeOf("Examine").GetBindingPath();
-            bindPath_Throw = InputHandler.CompositeOf("Zoom").GetBindingPath();
-            bindPath_Rotate = InputHandler.CompositeOf("Fire").GetBindingPath();
-            bindPath_Cursor = InputHandler.CompositeOf("Zoom").GetBindingPath();
         }
 
         private void OnInitTexts()
@@ -319,33 +283,6 @@ namespace HFPS.Systems
             gamePanels.ExaminePanel.SetActive(false);
         }
 
-        private void OnInventory(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
-        {
-            if (!isPaused && !isExamining && !healthManager.isDead && !cutscene.cutsceneRunning && ctx.ReadValueAsButton())
-            {
-                gamePanels.TabButtonPanel.SetActive(!gamePanels.TabButtonPanel.activeSelf);
-                gamePanels.MiscPanel.SetActive(!gamePanels.TabButtonPanel.activeSelf);
-                LockScript<ExamineManager>(!gamePanels.TabButtonPanel.activeSelf);
-
-                if (gamePanels.TabButtonPanel.activeSelf)
-                {
-                    isInventoryShown = true;
-                    userInterface.Crosshair.enabled = false;
-                    GetComponent<FloatingIconManager>().SetAllIconsVisible(false);
-                    LockPlayerControls(false, false, true, 3, true);
-                    HideSprites(0);
-                    HideSprites(1);
-                }
-                else
-                {
-                    isInventoryShown = false;
-                    userInterface.Crosshair.enabled = true;
-                    LockPlayerControls(true, true, false, 3, false);
-                    GetComponent<FloatingIconManager>().SetAllIconsVisible(true);
-                }
-            }
-        }
-
         private void OnPause(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
         {
             if (!healthManager.isDead && !cutscene.cutsceneRunning && ctx.ReadValueAsButton())
@@ -355,11 +292,6 @@ namespace HFPS.Systems
 
                 if (greyscaleState)
                     greyscaleState = !greyscaleState;
-
-                if (!isPaused)
-                    menuUI.ShowGeneralMenu();
-                else
-                    menuUI.ResetPanels();
 
                 isPaused = !isPaused;
 
@@ -389,7 +321,6 @@ namespace HFPS.Systems
                     {
                         gamePanels.TabButtonPanel.SetActive(false);
                         gamePanels.MiscPanel.SetActive(true);
-                        LockScript<ExamineManager>(true);
                         isInventoryShown = false;
                     }
 
@@ -448,40 +379,6 @@ namespace HFPS.Systems
             }
         }
 
-        public void ShowInventory(bool show)
-        {
-            ShowInventory(show, true, true, true);
-        }
-
-        /// <summary>
-        /// Function to show/hide Inventory UI Panel
-        /// </summary>
-        public void ShowInventory(bool show, bool miscPanel = false, bool crosshair = false, bool examine = false)
-        {
-            isInventoryShown = show;
-
-            gamePanels.TabButtonPanel.SetActive(show);
-            GetComponent<FloatingIconManager>().SetAllIconsVisible(!show);
-
-            if(miscPanel) gamePanels.MiscPanel.SetActive(!show);
-            if(crosshair) userInterface.Crosshair.enabled = !show;
-            if(examine) LockScript<ExamineManager>(!show);
-
-            if (show)
-            {
-                LockPlayerControls(false, false, true, 3, true);
-                HideSprites(0);
-                HideSprites(1);
-            }
-            else
-            {
-                LockPlayerControls(true, true, false, 3, false);
-            }
-        }
-
-        /// <summary>
-        /// Function to Unpause Game
-        /// </summary>
         public void Unpause()
         {
             GetComponent<FloatingIconManager>().SetAllIconsVisible(true);
@@ -524,6 +421,7 @@ namespace HFPS.Systems
         /// <param name="BlurEnable">Should we enable blur effect? (true = enabled, false = disabled)</param>
         /// <param name="ResetBlur">Should we reset blur effect? (true = reset)</param>
         /// <param name="ForceLockLevel">0 - None, 1 = Enable, 2 - Disable</param>
+        /// vr에 맞게 수정 필요
         public void LockPlayerControls(bool Controller, bool Interact, bool CursorVisible, int BlurLevel = 0, bool BlurEnable = false, bool ResetBlur = false, int ForceLockLevel = 0)
         {
             if (ForceLockLevel == 2)
@@ -535,13 +433,8 @@ namespace HFPS.Systems
             {
                 //Controller Lock
                 m_PlayerObj.GetComponent<PlayerController>().isControllable = Controller;
-                scriptManager.C<PlayerFunctions>().enabled = Controller;
-                scriptManager.C<DynamicObjectController>().enabled = Controller;
                 scriptManager.ScriptGlobalState = Controller;
-                LockScript<MouseLook>(Controller);
 
-                //Interact Lock
-                scriptManager.C<InteractManager>().inUse = !Interact;
             }
 
             //Show Cursor
@@ -688,108 +581,6 @@ namespace HFPS.Systems
                 {
                     Message.GetComponent<Notification>().SetMessage(message, 3f, QMWarningSprite);
                 }
-            }
-        }
-
-        /// <summary>
-        /// Show hint popup at middle top of the screen
-        /// </summary>
-        /// <param name="text">Hint Text</param>
-        /// <param name="time">How long will be popup shown</param>
-        /// <param name="messageTips">Tips that will be shown under popup</param>
-        public void ShowHintPopup(string text, float time = 3f, InteractiveItem.MessageTip[] messageTips = null)
-        {
-            userInterface.HintText.text = text;
-
-            if (HintTipsList.Count > 0)
-            {
-                foreach (var item in HintTipsList)
-                {
-                    Destroy(item);
-                }
-            }
-
-            HintTipsList.Clear();
-
-            if (messageTips != null && messageTips.Length > 0)
-            {
-                bool showTipsPanel = false;
-
-                foreach (var item in messageTips)
-                {
-                    if (string.IsNullOrEmpty(item.InputAction) || item.InputAction == "?")
-                        continue;
-
-                    GameObject obj = Instantiate(popups.HintTipsPrefab, popups.HintTipsContent.transform);
-                    ActionBinding.CompositePart composite = InputHandler.CompositeOf(item.InputAction);
-                    HintTipsList.Add(obj);
-
-                    if (composite != null)
-                    {
-                        SetKey(obj.transform, composite.GetBindingPath(), item.Message);
-                    }
-
-                    showTipsPanel = true;
-                }
-
-                gamePanels.HintTipsPanel.SetActive(showTipsPanel);
-            }
-            else
-            {
-                gamePanels.HintTipsPanel.SetActive(false);
-            }
-
-            UIFade uIFade = UIFade.Instance(gamePanels.HintMessagePanel, "[UIFader] HintNotification");
-            uIFade.ResetGraphicsColor();
-            uIFade.ImageTextAlpha(0.8f, 1f);
-            uIFade.FadeInOut(fadeOutTime: time, fadeOutAfter: UIFade.FadeOutAfter.Time);
-            uIFade.OnFadeOutEvent += delegate
-            {
-                foreach (var item in HintTipsList)
-                {
-                    Destroy(item);
-                }
-            };
-
-            foreach (GameObject tip in HintTipsList)
-            {
-                HorizontalLayoutGroup horizontalLayoutGroup = tip.GetComponent<HorizontalLayoutGroup>();
-                horizontalLayoutGroup.enabled = false;
-                horizontalLayoutGroup.enabled = true;
-            }
-        }
-
-        /// <summary>
-        /// Set Control Key Sprite depending on the Input Binding Path
-        /// </summary>
-        /// <param name="ControlObj">Control Transform</param>
-        /// <param name="BindingPath">Input Binding Path of the Control</param>
-        /// <param name="ControlName">Name of the Control</param>
-        private void SetKey(Transform ControlObj, string BindingPath, string ControlName = "Null")
-        {
-            ControlObj.GetChild(1).GetComponent<Text>().text = ControlName;
-
-            if (!string.IsNullOrEmpty(BindingPath))
-            {
-                CrossPlatformSprites sprites = InputHandler.GetSprites();
-
-                if (sprites != null)
-                {
-                    if (sprites.GetSprite(BindingPath) is var sprite && sprite != null)
-                    {
-                        ControlObj.GetChild(0).GetComponent<Image>().sprite = sprite;
-                    }
-                    else
-                    {
-                        Debug.LogError("[Control Sprite] The specified sprite was not found!");
-                    }
-                }
-
-                ControlObj.gameObject.SetActive(true);
-            }
-            else
-            {
-                ControlObj.gameObject.SetActive(false);
             }
         }
 
@@ -981,28 +772,6 @@ namespace HFPS.Systems
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Row">KB1 = 1 or KB2 = 2</param>
-        /// <param name="KeyName">Name of the key</param>
-        /// <param name="BindingPath">Binding Path of the Control</param>
-        public void ShowInteractSprite(int Row, string KeyName, string BindingPath)
-        {
-            if (isHeld) return;
-            gamePanels.InteractPanel.SetActive(true);
-
-            switch (Row)
-            {
-                case 1:
-                    SetKey(interactUI.KeyboardButton1.transform, BindingPath, KeyName);
-                    break;
-                case 2:
-                    SetKey(interactUI.KeyboardButton2.transform, BindingPath, KeyName);
-                    break;
-            }
-        }
-
-        /// <summary>
         /// Show info of interacting object
         /// </summary>
         /// <param name="info"></param>
@@ -1010,96 +779,6 @@ namespace HFPS.Systems
         {
             interactUI.InteractInfoText.SetActive(true);
             interactUI.InteractInfoText.GetComponent<Text>().text = text;
-        }
-
-        /// <summary>
-        /// Show Down Help Buttons
-        /// </summary>
-        public void ShowHelpButtons(HelpButton help1, HelpButton help2, HelpButton help3, HelpButton help4)
-        {
-            if(helpUI.HelpButton1 != null)
-                if (help1 != null) { SetKey(helpUI.HelpButton1.transform, help1.BindingPath, help1.Name); } else { helpUI.HelpButton1.SetActive(false); }
-
-            if (helpUI.HelpButton2 != null)
-                if (help2 != null) { SetKey(helpUI.HelpButton2.transform, help2.BindingPath, help2.Name); } else { helpUI.HelpButton2.SetActive(false); }
-
-            if (helpUI.HelpButton3 != null)
-                if (help3 != null) { SetKey(helpUI.HelpButton3.transform, help3.BindingPath, help3.Name); } else { helpUI.HelpButton3.SetActive(false); }
-
-            if (helpUI.HelpButton4 != null)
-                if (help4 != null) { SetKey(helpUI.HelpButton4.transform, help4.BindingPath, help4.Name); } else { helpUI.HelpButton4.SetActive(false); }
-
-            if (gamePanels.HelpKeysPanel != null && (help1 != null || help2 != null || help3 != null || help4 != null))
-            {
-                gamePanels.HelpKeysPanel.SetActive(true);
-            }
-        }
-
-        //
-        /// <summary>
-        /// Show Examine UI Buttons
-        /// </summary>
-        /// <param name="btn1">Put Away</param>
-        /// <param name="btn2">Use</param>
-        /// <param name="btn3">Rotate</param>
-        /// <param name="btn4">Show Cursor</param>
-        public void ShowExamineSprites(bool btn1 = true, bool btn2 = true, bool btn3 = true, bool btn4 = true, string PutAwayText = "", string UseText = "")
-        {
-            if (string.IsNullOrEmpty(PutAwayText)) PutAwayText = this.PutAwayText;
-            if (string.IsNullOrEmpty(UseText)) UseText = TakeText;
-
-            if (helpUI.HelpButton1 != null)
-                if (btn1) { SetKey(helpUI.HelpButton1.transform, bindPath_Grab, PutAwayText); } else { helpUI.HelpButton1.SetActive(false); }
-
-            if (helpUI.HelpButton2 != null)
-                if (btn2) { SetKey(helpUI.HelpButton2.transform, bindPath_Use, UseText); } else { helpUI.HelpButton2.SetActive(false); }
-
-            if (helpUI.HelpButton3 != null)
-                if (btn3) { SetKey(helpUI.HelpButton3.transform, bindPath_Rotate, RotateText); } else { helpUI.HelpButton3.SetActive(false); }
-
-            if (helpUI.HelpButton4 != null)
-                if (btn4) { SetKey(helpUI.HelpButton4.transform, bindPath_Cursor, ShowCursorText); } else { helpUI.HelpButton4.SetActive(false); }
-
-            if (gamePanels.HelpKeysPanel != null)
-                gamePanels.HelpKeysPanel.SetActive(true);
-        }
-
-        /// <summary>
-        /// Show Examine Sprites for Paper Object
-        /// </summary>
-        /// <param name="BindingPath">Binding Path of the Paper Examine Control</param>
-        /// <param name="Rotate">Should we show Rotate Control?</param>
-        /// <param name="ExamineText">Examine Text</param>
-        public void ShowPaperExamineSprites(string BindingPath, bool Rotate, bool Read = true, string ExamineText = "")
-        {
-            if (string.IsNullOrEmpty(ExamineText)) ExamineText = this.ExamineText;
-
-            SetKey(helpUI.HelpButton1.transform, bindPath_Grab, PutAwayText);
-
-            if (Read)
-                SetKey(helpUI.HelpButton2.transform, BindingPath, ExamineText);
-            else
-                helpUI.HelpButton2.SetActive(false);
-
-            if (Rotate)
-                SetKey(helpUI.HelpButton3.transform, bindPath_Rotate, RotateText);
-            else
-                helpUI.HelpButton3.SetActive(false);
-
-            helpUI.HelpButton4.SetActive(false);
-            gamePanels.HelpKeysPanel.SetActive(true);
-        }
-
-        /// <summary>
-        /// Show Sprites for Draggable Object
-        /// </summary>
-        public void ShowGrabSprites()
-        {
-            SetKey(helpUI.HelpButton1.transform, bindPath_Grab, PutAwayText);
-            SetKey(helpUI.HelpButton2.transform, bindPath_Rotate, RotateText);
-            SetKey(helpUI.HelpButton3.transform, bindPath_Throw, ThrowText);
-            helpUI.HelpButton4.SetActive(false);
-            gamePanels.HelpKeysPanel.SetActive(true);
         }
 
         /// <summary>
@@ -1125,22 +804,6 @@ namespace HFPS.Systems
         }
 
         /// <summary>
-        /// Show Death Screen Panel
-        /// </summary>
-        public void ShowDeadPanel()
-        {
-            LockPlayerControls(false, false, true);
-            scriptManager.C<ItemSwitcher>().DisableItems();
-            scriptManager.C<ItemSwitcher>().enabled = false;
-
-            GetComponent<MenuController>().ShowPanel("Dead"); //Show Dead UI and Buttons
-            MenuController.FirstOrAltButton(gamePanels.DeadFirstButton, null);
-
-            gamePanels.PauseGamePanel.SetActive(false);
-            gamePanels.MainGamePanel.SetActive(false);
-        }
-
-        /// <summary>
         /// Change current scene using default unity method
         /// </summary>
         public void ChangeScene(string SceneName)
@@ -1148,41 +811,12 @@ namespace HFPS.Systems
             SceneManager.LoadScene(SceneName);
         }
 
-        /// <summary>
-        /// If CrossSceneSaving is enabled, save and load next scene using Scene Loader
-        /// </summary>
-        public void LoadNextScene(string scene)
-        {
-            if (saveHandler)
-            {
-                if (saveHandler.crossSceneSaving)
-                {
-                    saveHandler.SaveNextSceneData(scene);
-
-                    if (!isPaused)
-                    {
-                        LockPlayerControls(false, false, false);
-                    }
-
-                    if (saveHandler.fadeControl)
-                    {
-                        saveHandler.fadeControl.FadeIn(false);
-                    }
-
-                    StartCoroutine(LoadScene(scene, 2));
-                }
-            }
-        }
 
         /// <summary>
         /// Load last saved scene
         /// </summary>
         public void Retry()
         {
-            if (saveHandler.fadeControl)
-            {
-                saveHandler.fadeControl.FadeIn(false);
-            }
 
             StartCoroutine(LoadScene(SceneManager.GetActiveScene().name, 1));
         }
@@ -1190,9 +824,7 @@ namespace HFPS.Systems
         private IEnumerator LoadScene(string scene, int loadstate)
         {
             yield return new WaitForEndOfFrame();
-            yield return new WaitUntil(() => saveHandler.fadeControl.IsFadedIn);
 
-            Prefs.Game_SaveName(saveHandler.lastSave);
             Prefs.Game_LoadState(loadstate);
             Prefs.Game_LevelName(scene);
 

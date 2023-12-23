@@ -142,7 +142,8 @@ namespace HFPS.Player
             if (Health <= 0 || Health <= 0.9)
             {
                 Health = 0f;
-                gameManager.ShowDeadPanel();
+                // 수정 필요
+                //gameManager.ShowDeadPanel();
 
                 isDead = true;
             }

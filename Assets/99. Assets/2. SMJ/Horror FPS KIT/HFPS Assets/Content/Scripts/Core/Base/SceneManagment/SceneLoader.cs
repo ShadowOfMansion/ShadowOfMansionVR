@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using ThunderWire.Scene;
-using ThunderWire.Input;
 using HFPS.UI;
 
 #if TW_LOCALIZATION_PRESENT
@@ -34,7 +33,6 @@ namespace HFPS.Systems
         public SceneInfo[] SceneInfos;
 
         [Header("UI")]
-        public TipsManager TipsManager;
         public UIFadePanel BlackScreenFade;
         public GameObject Spinner;
         public GameObject ManualSwitchText;
@@ -143,13 +141,6 @@ namespace HFPS.Systems
 
                 Spinner.SetActive(false);
                 ManualSwitchText.SetActive(true);
-
-                if (TipsManager)
-                {
-                    TipsManager.TipsText.gameObject.SetActive(false);
-                }
-
-                yield return new WaitUntil(() => InputHandler.AnyInputPressed());
 
                 RemoveDontDestroyOnLoad();
 

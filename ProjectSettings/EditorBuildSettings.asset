@@ -6,25 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01. Scenes/PC/Start.unity
-    guid: b85c215da48e4a0459d900773c9fa4ff
-  - enabled: 1
-    path: Assets/01. Scenes/PC/StartLoading.unity
-    guid: 6e435028e90c64af0ba9eeb7bd0c2c95
-  - enabled: 1
-    path: Assets/01. Scenes/PC/ShadowOfMansion.unity
-    guid: 09ce9251fbfb8be418ccfce492f09d36
-  - enabled: 1
-    path: Assets/01. Scenes/PC/End.unity
-    guid: 59805862cf033a04db1a1c3f94ac0ac2
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: d1d025fb8161ba543b9d3c6b59f6cf6e,
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 0b015d152b4d950459f65fffec0193f9,
       type: 2}
-    com.unity.addressableassets: {fileID: 11400000, guid: 879dc59d21f31734c95279731f769bef,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f0164ecae9786a2449af81a08c01a721,
       type: 2}
-    com.unity.input.settings: {fileID: 11400000, guid: f4687e337c6012f40a487fd66e19f2da,
-      type: 2}
-    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 15fc173d84c3d61418b379df32cf59fd,
-      type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 60b4582643029b44b8acc5915043b685,
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 7e15753a7b4ff5944a5508099d4fbe67,
       type: 2}
