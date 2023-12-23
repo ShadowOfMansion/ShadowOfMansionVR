@@ -3,9 +3,7 @@ using UnityEngine;
 using System.Collections;
 using ThunderWire.Utilities;
 using ThunderWire.Helpers;
-using ThunderWire.Input;
 using HFPS.Systems;
-using System.Collections.Generic;
 
 namespace HFPS.Player
 {
@@ -215,10 +213,8 @@ namespace HFPS.Player
 
         private HFPS_GameManager gameManager;
         private ScriptManager scriptManager;
-        private ItemSwitcher itemSwitcher;
         private HealthManager healthManager;
         private FootstepsController footsteps;
-        private InputHandler.Device inputDevice = InputHandler.Device.None;
 
         private Vector3 moveDirection = Vector3.zero;
         private Vector3 slideDirection = Vector3.zero;
@@ -253,7 +249,6 @@ namespace HFPS.Player
         private bool onLadder;
         private bool wallRicochet;
 
-        private Ladder ladder;
         private Vector3 ladderExit;
 
         private ControllerColliderHit colliderHit;
@@ -266,7 +261,6 @@ namespace HFPS.Player
             healthManager = GetComponent<HealthManager>();
             gameManager = HFPS_GameManager.Instance;
             scriptManager = ScriptManager.Instance;
-            itemSwitcher = scriptManager.C<ItemSwitcher>();
 
             TextsSource.Subscribe(OnInitTexts);
             gravity = controllerSettings.baseGravity * 2;
@@ -276,11 +270,7 @@ namespace HFPS.Player
         {
             string defaultText = ExitLadder.Item2;
             ExitLadder.Item2 = TextsSource.GetText(ExitLadder.Item1, defaultText);
-
-            if(movementState == MovementState.Ladder)
-            {
-                gameManager.ShowHelpButtons(new HelpButton(ExitLadder.Item2, InputHandler.CompositeOf("Jump").GetBindingPath()), null, null, null);
-            }
+            
         }
 
         void Start()
@@ -310,28 +300,6 @@ namespace HFPS.Player
         {
             velMagnitude = CharacterControl.velocity.magnitude;
 
-            void GetInput()
-            {
-                Vector2 movement;
-
-                if ((movement = InputHandler.ReadInput<Vector2>("Move")) != null)
-                {
-                    if (InputHandler.CurrentDevice != InputHandler.Device.MouseKeyboard)
-                    {
-                        inputX = movement.x;
-                        inputY = movement.y;
-                        inputMovement = movement;
-                    }
-                    else
-                    {
-                        inputY = Mathf.MoveTowards(inputY, movement.y, Time.deltaTime * controllerSettings.inputSmoothing);
-                        inputX = Mathf.MoveTowards(inputX, movement.x, Time.deltaTime * controllerSettings.inputSmoothing);
-                        inputMovement.y = inputY;
-                        inputMovement.x = inputX;
-                    }
-                }
-            }
-
             //Break update when player is dead and ragdoll is activated
             if (healthManager.isDead)
             {
@@ -341,86 +309,40 @@ namespace HFPS.Player
                 return;
             }
 
-            if (InputHandler.InputIsInitialized && !isPauseMenu)
+            if (!isPauseMenu)
             {
-                inputDevice = InputHandler.CurrentDevice;
-                ZoomPressed = InputHandler.ReadButton("Zoom");
-
-                if (controllerFeatures.enableJump)
-                {
-                    JumpPressed = InputHandler.ReadButtonOnce(this, "Jump") &&
-                        (!controllerFeatures.enableStamina || currentStamina > 0);
-                }
-
                 if (controllerFeatures.enableRun)
                 {
-                    if (inputDevice != InputHandler.Device.MouseKeyboard)
-                    {
-                        if (!controllerFeatures.enableStamina)
-                        {
-                            if (InputHandler.ReadButtonOnce(this, "Run"))
-                            {
-                                RunPressed = !RunPressed;
-                            }
-                        }
-                        else
-                        {
-                            if (InputHandler.ReadButtonOnce(this, "Run"))
-                            {
-                                if (!RunPressed && currentStamina > 0)
-                                {
-                                    RunPressed = true;
-                                }
-                            }
-                            else if (currentStamina < 0)
-                            {
-                                RunPressed = false;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (!controllerFeatures.enableStamina)
-                        {
-                            RunPressed = InputHandler.ReadButton("Run");
-                        }
-                        else
-                        {
-                            RunPressed = InputHandler.ReadButton("Run") && currentStamina > 0;
-                        }
-                    }
+                    // 수정 필요
+                        //if (!controllerFeatures.enableStamina)
+                        //{
+                        //    if (InputHandler.ReadButtonOnce(this, "Run"))
+                        //    {
+                        //        RunPressed = !RunPressed;
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    if (InputHandler.ReadButtonOnce(this, "Run"))
+                        //    {
+                        //        if (!RunPressed && currentStamina > 0)
+                        //        {
+                        //            RunPressed = true;
+                        //        }
+                        //    }
+                        //    else if (currentStamina < 0)
+                        //    {
+                        //        RunPressed = false;
+                        //    }
+                        //}
                 }
 
-                CrouchPressed = InputHandler.ReadButtonOnce(this, "Crouch");
+                //CrouchPressed = InputHandler.ReadButtonOnce(this, "Crouch");
 
-                if (isControllable)
-                {
-                    GetInput();
-
-                    if (inputDevice != InputHandler.Device.MouseKeyboard && inputY < 0.7f)
+                    if (inputY < 0.7f)
                     {
                         RunPressed = false;
                     }
-                }
-                else
-                {
-                    RunPressed = false;
-                    inputX = 0f;
-                    inputY = 0f;
-                    inputMovement = Vector2.zero;
-                }
-            }
-
-            if (inputDevice.IsGamepadDevice() == 1)
-            {
-                if (!isPauseMenu)
-                {
-                    isPauseMenu = gameManager.isPaused || gameManager.isInventoryShown;
-                }
-                else if (!gameManager.isPaused && !gameManager.isInventoryShown)
-                {
-                    isPauseMenu = InputHandler.AnyInputPressed();
-                }
             }
 
             if (controllerFeatures.enableStamina)
@@ -483,12 +405,6 @@ namespace HFPS.Player
 
                     if (CharacterControl.enabled)
                         isGrounded = (CharacterControl.Move(verticalMove * Time.deltaTime) & CollisionFlags.Below) != 0;
-
-                    if (ladder != null && Vector3.Distance(transform.position, ladder.LadderUp) < 0.2f)
-                    {
-                        LerpPlayerLadder(ladderExit);
-                        onLadder = false;
-                    }
 
                     if (isGrounded && inputY < 0 || JumpPressed)
                         LadderExit();
@@ -813,14 +729,15 @@ namespace HFPS.Player
                         flyModifier.z = Mathf.Lerp(flyModifier.z, inputY, Time.deltaTime * dirChangeSpeed);
                     }
 
-                    if (InputHandler.ReadButton("Jump"))
-                    {
-                        flyModifier.y = Mathf.Lerp(flyModifier.y, 1, Time.deltaTime * dirChangeSpeed);
-                    }
-                    if (InputHandler.ReadButton("Crouch"))
-                    {
-                        flyModifier.y = Mathf.Lerp(flyModifier.y, -1, Time.deltaTime * dirChangeSpeed);
-                    }
+                    // 수정 필요
+                    //if (InputHandler.ReadButton("Jump"))
+                    //{
+                    //    flyModifier.y = Mathf.Lerp(flyModifier.y, 1, Time.deltaTime * dirChangeSpeed);
+                    //}
+                    //if (InputHandler.ReadButton("Crouch"))
+                    //{
+                    //    flyModifier.y = Mathf.Lerp(flyModifier.y, -1, Time.deltaTime * dirChangeSpeed);
+                    //}
 
                     flyDirection = flyModifier;
                     flyDirection *= flyingSpeed;
@@ -1032,50 +949,6 @@ namespace HFPS.Player
         }
 
         /// <summary>
-        /// Use ladder function
-        /// </summary>
-        public void UseLadder(Ladder ladder, Vector2 look, bool climbUp)
-        {
-            ladderReady = false;
-            characterState = CharacterState.Stand;
-            this.ladder = ladder;
-
-            moveDirection = Vector3.zero;
-            inputX = 0f;
-            inputY = 0f;
-
-            // adjust exit position of the ladder
-            ladderExit = ladder.LadderExit;
-            ladderExit.y += CharacterControl.skinWidth + (controllerAdjustments.normalHeight / 2);
-
-            if (climbUp)
-            {
-                Vector3 enter = ladder.LadderCenter;
-                enter.y = transform.position.y;
-
-                // adjust enter position by groundCheckOffset
-                if (Vector3.Distance(transform.position, ladder.LadderUp) > groundCheckOffset + 0.1f)
-                    enter.y += Mathf.Abs(groundCheckOffset) + Physics.defaultContactOffset;
-
-                StartCoroutine(MovePlayer(enter, autoMoveSettings.climbUpAutoMove, true));
-                scriptManager.GetComponent<MouseLook>().LerpLook(look, autoMoveSettings.climbUpAutoLook, true);
-            }
-            else
-            {
-                // adjust climb down enter position
-                Vector3 enter = ladder.LadderUp;
-                enter.y -= 0.5f;
-
-                StartCoroutine(MovePlayer(enter, autoMoveSettings.climbDownAutoMove, true));
-                scriptManager.GetComponent<MouseLook>().LerpLook(look, autoMoveSettings.climbDownAutoLook, true);
-            }
-
-            gameManager.ShowHelpButtons(new HelpButton(ExitLadder.Item2, InputHandler.CompositeOf("Jump").GetBindingPath()), null, null, null);
-            itemSwitcher.FreeHands(true);
-            movementState = MovementState.Ladder;
-        }
-
-        /// <summary>
         /// Exit ladder movement
         /// </summary>
         public void LadderExit()
@@ -1083,14 +956,10 @@ namespace HFPS.Player
             if (ladderReady)
             {
                 movementState = MovementState.Normal;
-                scriptManager.GetComponent<MouseLook>().LockLook(false);
                 gameManager.HideSprites(1);
-                itemSwitcher.FreeHands(false);
-                ladder.Collider.enabled = true;
                 ladderExit = Vector3.zero;
                 ladderReady = false;
                 onLadder = false;
-                ladder = null;
             }
         }
 
@@ -1102,7 +971,6 @@ namespace HFPS.Player
             if (ladderReady)
             {
                 gameManager.HideSprites(1);
-                itemSwitcher.FreeHands(false);
                 StartCoroutine(MovePlayer(destination, autoMoveSettings.climbFinishAutoMove, false, true));
                 ladderReady = false;
             }
@@ -1122,10 +990,6 @@ namespace HFPS.Player
 
             StartCoroutine(MovePlayer(destination, autoMoveSettings.globalAutoMove, false, true));
 
-            if (lerpLook)
-            {
-                scriptManager.GetComponent<MouseLook>().LerpLook(look, autoMoveSettings.globalAutoLook, true);
-            }
         }
 
         IEnumerator MovePlayer(Vector3 pos, float speed, bool isLadder, bool unlockLook = false)
@@ -1143,15 +1007,6 @@ namespace HFPS.Player
             ladderReady = isLadder;
             onLadder = isLadder;
             movementState = isLadder ? MovementState.Ladder : MovementState.Normal;
-
-            if (unlockLook) 
-                scriptManager.GetComponent<MouseLook>().LockLook(false);
-
-            if (!isLadder && ladder != null)
-            {
-                ladder.Collider.enabled = true;
-                ladderExit = Vector3.zero;
-            }
         }
 
         IEnumerator RemoveFoam()

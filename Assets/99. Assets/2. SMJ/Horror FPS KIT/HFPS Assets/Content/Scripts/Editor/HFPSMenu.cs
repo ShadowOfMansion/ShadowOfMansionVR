@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEditor;
-using ThunderWire.Input;
-using TWTools = ThunderWire.Utilities.Utility;
 using HFPS.Systems;
 using HFPS.Player;
 using ThunderWire.Helpers;
@@ -104,7 +102,6 @@ namespace HFPS.Editors
 
             Player.transform.position = new Vector3(0, 0, 0);
             GameManager.GetComponent<HFPS_GameManager>().m_PlayerObj = Player;
-            GameManager.GetComponent<SaveGameHandler>().constantSaveables = new List<SaveableDataPair>();
             Player.GetComponentInChildren<ScriptManager>().m_GameManager = GameManager.GetComponent<HFPS_GameManager>();
         }
 
@@ -137,7 +134,6 @@ namespace HFPS.Editors
 
             Player.transform.position = new Vector3(0, 0, 0);
             GameManager.GetComponent<HFPS_GameManager>().m_PlayerObj = Player;
-            GameManager.GetComponent<SaveGameHandler>().constantSaveables = new List<SaveableDataPair>();
             Player.GetComponentInChildren<ScriptManager>().m_GameManager = GameManager.GetComponent<HFPS_GameManager>();
         }
 
@@ -169,10 +165,6 @@ namespace HFPS.Editors
 
             if (gameManager != null)
             {
-                List<SaveableDataPair> _tempSaveables = new List<SaveableDataPair>();
-                if (gameManager.TryGetComponent(out SaveGameHandler sgh))
-                    _tempSaveables = sgh.constantSaveables;
-
                 ObjectivesScriptable _tempObjAsset = null;
                 if (gameManager.TryGetComponent(out ObjectiveManager objManager))
                     _tempObjAsset = objManager.SceneObjectives;
@@ -192,9 +184,6 @@ namespace HFPS.Editors
 
                 newGameManager.GetComponent<HFPS_GameManager>().m_PlayerObj = player;
                 player.GetComponentInChildren<ScriptManager>().m_GameManager = newGameManager.GetComponent<HFPS_GameManager>();
-
-                if (newGameManager.TryGetComponent(out SaveGameHandler gmSgh))
-                    gmSgh.constantSaveables = _tempSaveables;
 
                 if (newGameManager.TryGetComponent(out ObjectiveManager gmObjManager))
                     gmObjManager.SceneObjectives = _tempObjAsset;
@@ -350,12 +339,6 @@ namespace HFPS.Editors
             CreateAssetFile<ObjectivesScriptable>(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + " Objectives", "Objectives 2");
         }
 
-        [MenuItem("Tools/HFPS KIT/" + "Scriptables" + "/New Cross-Platform Sprites")]
-        static void CreateCrossPlatformSprites()
-        {
-            CreateAssetFile<CrossPlatformSprites>("CrossPlatformSprites");
-        }
-
         [MenuItem("Tools/HFPS KIT/" + "Scriptables" + "/New Surface Details")]
         static void CreateSurfaceDetails()
         {
@@ -435,11 +418,6 @@ namespace HFPS.Editors
                 {
                     foreach (var obj in Selection.gameObjects)
                     {
-                        if (obj.HasComponent(out InteractiveItem interactiveItem))
-                        {
-                            interactiveItem.floatingIcon = true;
-                        }
-
                         if (!uIFloatingItem.FloatingIcons.Contains(obj))
                         {
                             uIFloatingItem.FloatingIcons.Add(obj);

@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using ThunderWire.Input;
 using HFPS.Systems;
 
 namespace ThunderWire.Utilities
@@ -263,44 +262,6 @@ namespace ThunderWire.Utilities
         }
 
         /// <summary>
-        /// Get string with specified input between two chars
-        /// </summary>
-        public static string GetStringWithInput(this string str, char start, char end)
-        {
-            string result = str;
-
-            if (InputHandler.HasReference && InputHandler.InputIsInitialized)
-            {
-                if (str.Contains(start) && str.Contains(end))
-                {
-                    string key = InputHandler.CompositeOf(str.RegexBetween(start, end)).displayString;
-                    result = str.RegexReplace(start, end, key);
-                }
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get string with specified input between two chars, with before and after separators
-        /// </summary>
-        public static string GetStringWithInput(this string str, char start, char end, char before, char after)
-        {
-            string result = str;
-
-            if (InputHandler.HasReference && InputHandler.InputIsInitialized)
-            {
-                if (str.Contains(start) && str.Contains(end))
-                {
-                    string key = InputHandler.CompositeOf(str.RegexBetween(start, end)).displayString;
-                    result = str.RegexReplace(start, end, before + key + after);
-                }
-            }
-
-            return result;
-        }
-
-        /// <summary>
         /// Check if string contains character with any case.
         /// </summary>
         public static bool ContainsAnyCase(this string str, char needle)
@@ -392,43 +353,6 @@ namespace ThunderWire.Utilities
                     return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/" + Application.productName + "/";
                 }
             }
-        }
-
-        /// <summary>
-        /// Get all saveable components from GameObject
-        /// </summary>
-        public static SaveableDataPair[] GetSaveables(GameObject obj)
-        {
-            MonoBehaviour[] scripts = obj.GetComponents<MonoBehaviour>();
-
-            var saveablesQuery = from Instance in scripts
-                                 where typeof(ISaveable).IsAssignableFrom(Instance.GetType()) && !Instance.GetType().IsInterface && !Instance.GetType().IsAbstract
-                                 let key = string.Format("{0}_{1}", Instance.GetType().Name, System.Guid.NewGuid().ToString("N"))
-                                 select new SaveableDataPair(SaveableDataPair.DataBlockType.ISaveable, key, Instance, new string[0]);
-
-            var attributesQuery = from Instance in scripts
-                                  let attr = Instance.GetType().GetFields().Where(field => field.GetCustomAttributes(typeof(SaveableField), false).Count() > 0 && !field.IsLiteral && field.IsPublic).Select(fls => fls.Name).ToArray()
-                                  let key = string.Format("{0}_{1}", Instance.GetType().Name, System.Guid.NewGuid().ToString("N"))
-                                  where attr.Count() > 0
-                                  select new SaveableDataPair(SaveableDataPair.DataBlockType.Attribute, key, Instance, attr);
-
-            if (attributesQuery.Count() > 0)
-            {
-                var pairs = saveablesQuery.Union(attributesQuery);
-
-                if (pairs.Count() > 0)
-                {
-                    return pairs.ToArray();
-                }
-            }
-            else if(saveablesQuery.Count() > 0)
-            {
-                return saveablesQuery.ToArray();
-            }
-
-            Debug.LogError("There are no saveables in specified object!");
-
-            return null;
         }
 
         /// <summary>

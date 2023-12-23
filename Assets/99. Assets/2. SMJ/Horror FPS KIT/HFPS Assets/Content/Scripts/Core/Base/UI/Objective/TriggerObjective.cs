@@ -29,14 +29,6 @@ namespace HFPS.Systems
             objectiveManager = ObjectiveManager.Instance;
         }
 
-        void Start()
-        {
-            if (GetComponent<InteractiveItem>())
-            {
-                isInteractive = true;
-            }
-        }
-
         void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player") && !isTriggered && !isInteractive)

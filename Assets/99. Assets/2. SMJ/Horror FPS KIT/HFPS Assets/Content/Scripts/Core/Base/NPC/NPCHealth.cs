@@ -119,11 +119,6 @@ namespace HFPS.Systems
 
                 if (corpseRemoveType != CorpseRemoveType.None)
                 {
-                    if (corpseRemoveType == CorpseRemoveType.Destroy)
-                    {
-                        SaveGameHandler.Instance.RemoveSaveableObject(gameObject, false, false);
-                    }
-
                     Invoke("CorpseRemove", corpseTime);
                 }
             }
@@ -136,14 +131,7 @@ namespace HFPS.Systems
 
         public void CorpseRemove()
         {
-            if (corpseRemoveType == CorpseRemoveType.Destroy)
-            {
-                SaveGameHandler.Instance.RemoveSaveableObject(gameObject, true, true);
-            }
-            else if (corpseRemoveType == CorpseRemoveType.Disable)
-            {
                 gameObject.SetActive(false);
-            }
         }
 
         void EnableRagdoll(bool enabled)

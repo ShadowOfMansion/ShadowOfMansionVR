@@ -15,7 +15,6 @@ namespace HFPS.Player
         private ScriptManager scriptManager;
         private PlayerController controller;
         private HealthManager health;
-        private MouseLook mouseLook;
         private Animator anim;
         private Transform cam;
 
@@ -125,9 +124,6 @@ namespace HFPS.Player
             if (!controller.gameObject.HasComponent(out health))
                 throw new System.NullReferenceException("Could not find Health Manager component in Player object!");
 
-            if (!scriptManager.gameObject.HasComponent(out mouseLook))
-                throw new System.NullReferenceException("Could not find Mouse Look component!");
-
             if (scriptManager.MainCamera != null)
                 cam = scriptManager.MainCamera.transform;
             else
@@ -168,8 +164,6 @@ namespace HFPS.Player
                 }
             }
 
-            mouseLook.SetClampRange(minBodyMaxDeadzone, maxBodyMaxDeadzone);
-
             ragdollParts = (from obj in anim.GetComponentsInChildren<Rigidbody>()
                             let col = obj.GetComponent<Collider>()
                             select new RagdollPart(col, obj)).ToArray();
@@ -206,11 +200,6 @@ namespace HFPS.Player
 
         void Update()
         {
-            if (mouseLook)
-            {
-                mouseSpeed = mouseLook.GetInputDelta().x;
-            }
-
             ladderReady = controller.ladderReady;
             movement = controller.GetMovementValue();
             inputAngle = InputToAngle(movement);
@@ -301,29 +290,8 @@ namespace HFPS.Player
 
                 if (!angledBody)
                 {
-                    if (scriptManager.C<MouseLook>().enabled)
-                    {
-                        if (mouseSpeed > turnMouseTrigger)
-                        {
-                            anim.SetBool("TurningRight", true);
-                            anim.SetBool("TurningLeft", false);
-                        }
-                        else if (mouseSpeed < -turnMouseTrigger)
-                        {
-                            anim.SetBool("TurningRight", false);
-                            anim.SetBool("TurningLeft", true);
-                        }
-                        else
-                        {
-                            anim.SetBool("TurningRight", false);
-                            anim.SetBool("TurningLeft", false);
-                        }
-                    }
-                    else
-                    {
                         anim.SetBool("TurningRight", false);
                         anim.SetBool("TurningLeft", false);
-                    }
                 }
                 else
                 {
@@ -493,8 +461,6 @@ namespace HFPS.Player
 
                         yBodyAngle = transform.root.eulerAngles.y;
                         yBodyRotation = yBodyAngle + angle.y;
-
-                        mouseLook.SetClampRange(minBodyMaxDeadzone, maxBodyMaxDeadzone);
                     }
                 }
                 else

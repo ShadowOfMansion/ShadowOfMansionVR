@@ -1,21 +1,13 @@
-﻿/*
- * NumberPadlock.cs - by ThunderWire Studio
- * ver. 1.1
-*/
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using HFPS.Player;
 
 namespace HFPS.Systems
 {
-    public class NumberPadlock : MonoBehaviour, ISaveable
+    public class NumberPadlock : MonoBehaviour
     {
-        private ExamineManager examineManager;
-
         [Range(0, 6)] public int DigitsCount = 3;
         public int UnlockCode = 123;
         [Space]
@@ -45,20 +37,10 @@ namespace HFPS.Systems
                 CodeCache[i] = '0';
             }
 
-            examineManager = ScriptManager.Instance.GetComponent<ExamineManager>();
-
             foreach (var digit in GetComponentsInChildren<NumberPadlockDigits>())
             {
                 digit.numberPadlock = this;
             }
-
-            examineManager.OnDropObject += delegate
-            {
-                if (isUnlocked)
-                {
-                    gameObject.SetActive(false);
-                }
-            };
         }
 
         /// <summary>
@@ -118,7 +100,6 @@ namespace HFPS.Systems
             }
 
             UnlockEvent.Invoke();
-            examineManager.CancelExamine();
 
             isUnlocked = true;
         }

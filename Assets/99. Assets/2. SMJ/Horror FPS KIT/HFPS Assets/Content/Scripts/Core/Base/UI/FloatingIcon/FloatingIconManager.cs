@@ -77,7 +77,6 @@ namespace HFPS.Systems
                 for (int i = 0; i < FloatingIconCache.Count; i++)
                 {
                     IconObjectPair Pair = FloatingIconCache[i];
-                    InteractiveItem interactiveItem;
 
                     if (Pair.FollowObject == null)
                     {
@@ -86,11 +85,6 @@ namespace HFPS.Systems
                     }
                     else
                     {
-                        if ((interactiveItem = Pair.FollowObject.GetComponent<InteractiveItem>()) != null)
-                        {
-                            Pair.Icon.SetIconVisible(interactiveItem.floatingIcon);
-                        }
-
                         if (Pair.Icon.isVisible)
                         {
                             if (Pair.FollowObject.GetComponent<Renderer>() && !Pair.FollowObject.GetComponent<Renderer>().enabled)
@@ -156,19 +150,6 @@ namespace HFPS.Systems
                 for (int i = 0; i < FloatingIconCache.Count; i++)
                 {
                     IconObjectPair pair;
-
-                    if ((pair = FloatingIconCache[i]) != null)
-                    {
-                        InteractiveItem interactiveItem;
-
-                        if (pair.FollowObject && pair.Icon)
-                        {
-                            if ((interactiveItem = pair.FollowObject.GetComponent<InteractiveItem>()) != null && interactiveItem.floatingIcon)
-                            {
-                                pair.Icon.SetIconVisible(state);
-                            }
-                        }
-                    }
                 }
             }
         }

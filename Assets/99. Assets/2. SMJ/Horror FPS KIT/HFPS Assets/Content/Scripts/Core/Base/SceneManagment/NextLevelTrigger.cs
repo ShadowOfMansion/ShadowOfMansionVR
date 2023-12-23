@@ -46,14 +46,7 @@ namespace HFPS.Systems
         {
             if (gameManager)
             {
-                if (!simpleChange)
-                {
-                    gameManager.LoadNextScene(nextLevelName);
-                }
-                else
-                {
                     gameManager.ChangeScene(nextLevelName);
-                }
             }
             else
             {
