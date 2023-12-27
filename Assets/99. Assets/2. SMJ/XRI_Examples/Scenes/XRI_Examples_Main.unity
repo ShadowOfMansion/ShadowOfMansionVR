@@ -4301,12 +4301,12 @@ PrefabInstance:
     - target: {fileID: 7387125324240799344, guid: efebdf03cb1ccd043827e933755e413e,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7387125324240799344, guid: efebdf03cb1ccd043827e933755e413e,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7387125324240799344, guid: efebdf03cb1ccd043827e933755e413e,
         type: 3}
@@ -4316,7 +4316,7 @@ PrefabInstance:
     - target: {fileID: 7387125324240799344, guid: efebdf03cb1ccd043827e933755e413e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33687,6 +33687,81 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 408905525}
     m_Modifications:
+    - target: {fileID: 111419847051312087, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_UseSpring
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 111419847051312087, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 8.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 111419847051312087, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 5.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 111419847051312087, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -11.53321
+      objectReference: {fileID: 0}
+    - target: {fileID: 111419847051312087, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234568797462933915, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.66268265
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234568797462933915, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.1623383
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234568797462933915, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0000032186508
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234568797462933915, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4999992
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234568797462933915, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.50000143
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234568797462933915, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.4999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234568797462933915, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234568797462933915, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234568797462933915, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234568797462933915, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 2943766905581415612, guid: b8b3893b626b79b4d84ba7bcc2ac3d88,
         type: 3}
       propertyPath: m_Name
