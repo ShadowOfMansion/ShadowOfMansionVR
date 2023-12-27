@@ -7,6 +7,9 @@ TagManager:
   - Flesh
   - Water
   - Zombie
+  - Projectile
+  - Destroyer
+  - Flame
   layers:
   - Default
   - TransparentFX
@@ -14,8 +17,8 @@ TagManager:
   - Floor
   - Water
   - UI
-  - 
-  - 
+  - Grabbing
+  - Grabbable
   - Zombie
   - Interact
   - BodyPart
@@ -29,8 +32,8 @@ TagManager:
   - CamSecondExamination
   - Threat
   - Clue
-  - 
-  - 
+  - Hand
+  - HandPlayer
   - 
   - 
   - 
