@@ -5,6 +5,7 @@ using Autohand.Demo;
 using System;
 using NaughtyAttributes;
 using UnityEngine.Serialization;
+using UnityEngine.XR.Content.Interaction;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -69,6 +70,14 @@ namespace Autohand {
         [Tooltip("turn speed when not using snap turning - if snap turning, represents angle per snap")]
         public float snapTurnAngle = 30f;
         public float smoothTurnSpeed = 10f;
+        [Tooltip("Source to play sound from")]
+        public AudioSource source;
+        [Tooltip("Source to play sound from")]
+        public AudioClip clip;
+        public float soundRepeatDelay = 0.4f;
+
+        bool canPlaySound = true;
+        Coroutine playSoundRoutine;
 
 
 
@@ -82,6 +91,10 @@ namespace Autohand {
         public bool crouching = false;
         [ShowIf("showHeight")]
         public float crouchHeight = 0.6f;
+        [ShowIf("showHeight")]
+        public bool isprone = false;
+        [ShowIf("showHeight")]
+        public float proneHeight = 0.8f;
         [ShowIf("showHeight")]
         [Tooltip("Whether or not the capsule height should be adjusted to match the headCamera height")]
         public bool autoAdjustColliderHeight = true;
@@ -177,6 +190,8 @@ namespace Autohand {
         float playerHeight = 0;
         bool lastCrouching;
         float lastCrouchingHeight;
+        bool lastProne;
+        float lastProneHeight;
         Vector3 targetTrackedPos;
         Vector3 lastUpdatePosition;
         bool editorSelected;
@@ -382,8 +397,41 @@ namespace Autohand {
         public virtual void Move(Vector2 axis, bool useDeadzone = true, bool useRelativeDirection = false) {
             moveDirection.x = (!useDeadzone || Mathf.Abs(axis.x) > movementDeadzone) ? axis.x : 0;
             moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
-            if(useRelativeDirection)
+            if (useRelativeDirection)
+            {
                 moveDirection = transform.rotation * moveDirection;
+            }
+            if(moveDirection.x != 0 || moveDirection.z != 0)
+            {
+                if (canPlaySound)
+                {
+                    if (source != null && source.enabled)
+                    {
+                        Debug.Log("°È´ÂÁß");
+                        if (clip != null || source.clip != null)
+                            source.PlayOneShot(clip == null ? source.clip : clip);
+                        if (playSoundRoutine != null)
+                            StopCoroutine(playSoundRoutine);
+                        playSoundRoutine = StartCoroutine(SoundPlayBuffer());
+                    }
+                }
+            }
+        }
+
+        IEnumerator SoundPlayBuffer()
+        {
+            canPlaySound = false;
+            yield return new WaitForSeconds(soundRepeatDelay);
+            canPlaySound = true;
+            playSoundRoutine = null;
+        }
+
+        IEnumerator SoundPlayBuffer(float time)
+        {
+            canPlaySound = false;
+            yield return new WaitForSeconds(time);
+            canPlaySound = true;
+            playSoundRoutine = null;
         }
 
         public virtual void Turn(float turnAxis) {
@@ -687,7 +735,18 @@ namespace Autohand {
                 lastCrouchingHeight = crouchHeight;
             }
 
-            if(autoAdjustColliderHeight) {
+            if (isprone != lastProne)
+            {
+                if (lastProne)
+                    heightOffset += lastProneHeight;
+                if (!lastProne)
+                    heightOffset -= proneHeight;
+
+                lastProne = isprone;
+                lastProneHeight = proneHeight;
+            }
+
+            if (autoAdjustColliderHeight) {
                 playerHeight = Mathf.Clamp(headCamera.transform.position.y - transform.position.y, minMaxHeight.x, minMaxHeight.y);
                 bodyCapsule.height = playerHeight;
                 var centerHeight = playerHeight / 2f > bodyCapsule.radius ? playerHeight / 2f : bodyCapsule.radius;
