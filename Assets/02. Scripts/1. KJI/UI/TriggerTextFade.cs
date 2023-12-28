@@ -2,15 +2,23 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 
-public class TriggerTMPFade : MonoBehaviour
+public class TriggerTextFade : MonoBehaviour
 {
     public Collider[] triggers; // 여러 개의 트리거를 배열로 관리
     public TMP_Text[] textObjects; // 여러 개의 TMP_Text 오브젝트를 배열로 관리
     public float fadeDuration = 1.5f;
     public float displayDuration = 2.0f;
 
-    private void Start()
+    private bool[] triggered; // 트리거 활성화 여부를 저장하는 배열
+
+    void Start()
     {
+        triggered = new bool[triggers.Length]; // 트리거 상태를 저장할 배열 초기화
+        for (int i = 0; i < triggered.Length; i++)
+        {
+            triggered[i] = false; // 모든 트리거를 비활성화 상태로 초기화
+        }
+
         // 모든 TMP_Text 오브젝트 비활성화
         foreach (TMP_Text textObject in textObjects)
         {
@@ -24,8 +32,9 @@ public class TriggerTMPFade : MonoBehaviour
         {
             for (int i = 0; i < triggers.Length; i++)
             {
-                if (other == triggers[i]) // 플레이어가 특정 트리거에 닿았을 때
+                if (other == triggers[i] && !triggered[i]) // 플레이어가 특정 트리거에 닿았을 때, 그리고 해당 트리거가 비활성화 상태일 때
                 {
+                    triggered[i] = true; // 해당 트리거를 활성화 상태로 변경
                     StartCoroutine(FadeText(textObjects[i])); // 해당 인덱스의 텍스트에 대한 페이드 제어 시작
                 }
             }
