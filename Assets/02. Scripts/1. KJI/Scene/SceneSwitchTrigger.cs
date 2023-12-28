@@ -8,8 +8,10 @@ public class SceneSwitchTrigger : MonoBehaviour
     // 플레이어가 트리거에 들어왔을 때 호출되는 함수
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("트리거!");
         if (other.CompareTag("Player")) // 플레이어 태그를 사용하거나 필요에 따라 다른 태그를 지정할 수 있습니다.
         {
+            Debug.Log("Player!");
             SwitchScene(); // 씬 전환 함수 호출
         }
     }

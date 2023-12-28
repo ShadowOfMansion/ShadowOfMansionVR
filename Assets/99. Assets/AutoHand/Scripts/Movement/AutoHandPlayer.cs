@@ -407,7 +407,6 @@ namespace Autohand {
                 {
                     if (source != null && source.enabled)
                     {
-                        Debug.Log("°È´ÂÁß");
                         if (clip != null || source.clip != null)
                             source.PlayOneShot(clip == null ? source.clip : clip);
                         if (playSoundRoutine != null)
