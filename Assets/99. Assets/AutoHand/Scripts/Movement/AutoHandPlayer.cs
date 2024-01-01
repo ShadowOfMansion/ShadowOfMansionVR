@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Autohand.Demo;
-using System;
 using NaughtyAttributes;
 using UnityEngine.Serialization;
-using UnityEngine.XR.Content.Interaction;
 
 #if UNITY_EDITOR
 using UnityEditor;
